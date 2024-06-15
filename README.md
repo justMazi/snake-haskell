@@ -27,11 +27,11 @@ and run it using newly created executable file
 
 # User Docs
 
-After running the executable the game is started by pressing the space bar. Then the game starts. You can turn the snake by pressing either WASD, or arrows. In order to boost the snake's movement, keep pressing spacebar.
+After running the executable the game is started by pressing the space bar. You can turn the snake by pressing either WASD, or arrows. In order to boost the snake's movement, keep pressing spacebar.
 
-Whenever you run into a wall or into the snake itself the game ends as in the original implementation. You will then be shown your current best score. During the game you can see the score achieved so far during this run.
+Whenever you run into a wall or into the snake itself the game ends as in the original version of snake. You will then be shown your current best score. During the game you can see the score achieved so far during this run.
 
-Game can be exited at any moment by pressing esc.
+Game can be exited at any moment by pressing `esc`.
 
 # Programming Docs
 
@@ -46,7 +46,7 @@ play window windowBackground Config.fps (initialState True value 0) gameRender s
 
 ```
 
-in order to use the library we utilize its play method and provide it with all necessary things like the window, framerate, our own custom `GameState` (at this point its initial state) and a function to update the state of the game together with a rendering function. both of them are called by the library itself.
+in order to use the library we utilize its `play` function and provide it with all necessary things like the window, framerate, our own custom `GameState` (at this point its initial state) and a function to update the state of the game together with a rendering function. both of them are called by the library itself.
 
 #### GameState
 
@@ -149,6 +149,8 @@ servicePressedKeys (EventKey (Char 'a') Down _ _) gameState = setWantedDirection
 In the rendering module the `GameState` is rendered onto a canvas together with a the edges bounding the playground. It also conditionaly renders the game over text.
 
 ### Conclusion
+
+This docs cover the main parts of the project, there is a bunch of other functions defined that I would say are mostly self explanatory or not as interestiong to be covered here.
 
 Even though things like setting up the `Gloss` package were indeed a bit painful, ultimately i learned a lot while doing this little project and it had helped me practice haskell enough to pass the exam without any major issues.
 I tried to structure the project in the cleanest way possible, but frankly having no production experience with haskell this is what i ended up with.
