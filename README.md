@@ -3,7 +3,7 @@
 Final project for the Non-procedural programming course at MFF UK
 
 <video width="320" height="240" controls>
-  <source src="smake.mov" type="video/mp4">
+  <source src="snake.mov" type="video/mp4">
 </video>
 
 ### Potential setup pitfalls
