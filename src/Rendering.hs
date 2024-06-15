@@ -31,10 +31,10 @@ gameRender gameState =
     gameOverPicture =
       if isGameOver gameState
         then
-          [ color aquamarine $ translate (-130) 180 $ scale 0.25 0.25 $ text $ "Best score : " ++ show score,
-            color red $ translate (-155) 0 $ scale 0.4 0.4 $ text "GAME OVER",
-            color blue $ translate (-140) (-50) $ scale 0.2 0.2 $ text "Press SPACE to start."
+          [ color black $ translate (-130) 180 $ scale 0.25 0.25 $ text $ "Best score : " ++ show score,
+            color black $ translate (-155) 0 $ scale 0.4 0.4 $ text "GAME OVER",
+            color black $ translate (-140) (-50) $ scale 0.2 0.2 $ text "Press SPACE to start."
           ]
         else
-          [ color blue $ translate (-40) 260 $ scale 0.15 0.15 $ text $ "Score: " ++ show (length snake)
+          [ color black $ translate (-40) 260 $ scale 0.15 0.15 $ text $ "Score: " ++ show (length snake)
           ]

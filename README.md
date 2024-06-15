@@ -2,6 +2,12 @@
 
 Final project for the Non-procedural programming course at MFF UK
 
+<video width="320" height="240" controls>
+  <source src="smake.mov" type="video/mp4">
+</video>
+
+### Potential setup pitfalls
+
 In case you encounter the following error `Could not load module ‘Data.Map’
 haskell`
 
@@ -46,7 +52,7 @@ play window windowBackground Config.fps (initialState True value 0) gameRender s
 
 ```
 
-in order to use the library we utilize its `play` function and provide it with all necessary things like the window, framerate, our own custom `GameState` (at this point its initial state) and a function to update the state of the game together with a rendering function. both of them are called by the library itself.
+in order to use the library we utilize its `play` function and provide it with all necessary things like the window, framerate, our own custom `GameState` (at this point its initial state, note that we start in a GameOver state) and a function to update the state of the game together with a rendering function. both of them are called by the library itself.
 
 #### GameState
 
