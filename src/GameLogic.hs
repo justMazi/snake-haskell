@@ -23,13 +23,16 @@ data GameState = GameState
     getScore :: Score
   }
 
+-- Mapping directions to their respective vectors
 directionVectors :: Map Direction (Int, Int)
 directionVectors = fromList [(UP, (0, -1)), (DOWN, (0, 1)), (LEFT, (-1, 0)), (RIGHT, (1, 0))]
 
+-- Set the desired direction of the snake
 setWantedDirection :: GameState -> Direction -> GameState
 setWantedDirection (GameState snake food direction game random newDirection score) wantedDirection =
   GameState snake food direction game random wantedDirection score
 
+-- Initialize the game state with initial values
 initialState :: Bool -> Int -> Score -> GameState
 initialState gameOver seed score =
   GameState
@@ -45,6 +48,7 @@ initialState gameOver seed score =
     snake = Config.initialSnakePosition
     food = Config.initialFoodPosition
 
+-- Change the direction of the snake based on user input, ensuring it doesn't reverse direction
 changeDirection :: GameState -> GameState
 changeDirection state@(GameState snake food direction game random newDirection score) =
   if (fst vector1 + fst vector2 == 0 && snd vector1 + snd vector2 == 0)
@@ -54,9 +58,11 @@ changeDirection state@(GameState snake food direction game random newDirection s
     vector1 = directionVectors ! direction
     vector2 = directionVectors ! newDirection
 
+-- Boost the speed of the snake by updating the game state more frequently
 boostDirection :: GameState -> GameState
 boostDirection gameState = updateState Config.boostValue gameState
 
+-- Check if the game is over by verifying if the snake collides with the border or itself
 checkGameOver :: Snake -> Bool
 checkGameOver snake = headX == 0 || headX == 32 || headY == 0 || headY == 24 || headSnake `elem` body
   where
@@ -64,6 +70,7 @@ checkGameOver snake = headX == 0 || headX == 32 || headY == 0 || headY == 24 || 
     (headX, headY) = headSnake
     body = tail snake
 
+-- Move the snake in the specified direction, checking if food is eaten and updating the snake's position accordingly
 movePlayer :: Food -> Direction -> Snake -> (Bool, Snake)
 movePlayer food direction snake
   | foodEaten = (True, newHead : snake)
@@ -74,6 +81,7 @@ movePlayer food direction snake
     (shiftX, shiftY) = directionVectors ! direction
     (headX, headY) = head snake
 
+-- Update the game state for each frame, including moving the snake, checking for collisions, and generating new food
 updateState :: Float -> GameState -> GameState
 updateState _ gameState =
   if gameOver
@@ -103,6 +111,7 @@ updateState _ gameState =
         else (food, stdGen)
     newGameOver = checkGameOver newSnake
 
+-- Generate a new food position, ensuring it does not overlap with the snake
 generateNewFood :: Snake -> StdGen -> (Food, StdGen)
 generateNewFood snake stdGen =
   if newFood `elem` snake
